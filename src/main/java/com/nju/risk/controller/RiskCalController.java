@@ -31,7 +31,7 @@ public class RiskCalController {
     @PostMapping("/calculate")
     public Map<String, Map<String, Double>> calculateRisk(@RequestBody RiskCalculationRequest request) {
         if (!UtilCollections.checkIfRequireCalculationGlobally(request.getStorageTank())) {
-            throw new RuntimeException("未通过类型检查");
+            throw new RuntimeException("该类型储罐无需计算");
         } else {
             UtilCollections.prepareTankDefaultData(request.getStorageTank(), request.getCompanyInfo());
             return Map.of("地震风险", earthquakeRisk.calculate(request.getCompanyInfo(), request.getStorageTank()),

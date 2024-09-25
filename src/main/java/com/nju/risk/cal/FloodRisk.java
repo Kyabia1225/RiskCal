@@ -21,7 +21,7 @@ public class FloodRisk implements DeviceBrokenRisk {
         } else if (storageTank.getShape().equals("卧式圆筒罐")) {
             return calculateHorizontalTank(storageTank);
         } else {
-            throw new RuntimeException("不支持的储罐形状");
+            return Map.of("非立式或卧式圆筒罐，无需计算", 0.0);
         }
     }
 

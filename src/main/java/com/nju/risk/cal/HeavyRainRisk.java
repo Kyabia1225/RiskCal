@@ -12,7 +12,7 @@ public class HeavyRainRisk implements DeviceBrokenRisk {
     @Override
     public Map<String, Double> calculate(CompanyInfo companyInfo, StorageTank storageTank) {
         if (!storageTank.getForm().equals("浮顶罐")) {
-            throw new RuntimeException("不支持的储罐形式");
+            return Map.of("非浮顶罐无需计算", 0.0);
         } else {
             Double res1 = (9.8 * storageTank.getFloatingRoofWeight() + 7.693 * storageTank.getFloatingRoofDensity() * Math.pow(storageTank.getDiameter(), 2)
                     * (storageTank.getFloatingRoofThickness() + H4case1) - 35.49168 * storageTank.getDrainagePipeDiameter() * storageTank.getDrainageSystemEfficiency())

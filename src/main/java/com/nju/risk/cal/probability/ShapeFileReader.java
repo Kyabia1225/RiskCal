@@ -64,6 +64,7 @@ public class ShapeFileReader {
                     }
                 }
             }
+            features.close();
         } catch (Exception e) {
             log.error(e.getMessage());
         }

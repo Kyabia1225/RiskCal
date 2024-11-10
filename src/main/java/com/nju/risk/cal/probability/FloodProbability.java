@@ -11,6 +11,6 @@ public class FloodProbability implements Probability {
     @Override
     public SimpleFeature getProbability(double longitude, double latitude) {
         SimpleFeatureSource featureSource = ShapeFileReader.readShapeFile("dbFiles/flood.shp");
-        return ShapeFileReader.getNearestPointFeature(latitude, longitude, featureSource);
+        return ShapeFileReader.getNearestPointFeature(longitude, latitude, featureSource);
     }
 }

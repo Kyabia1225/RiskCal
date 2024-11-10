@@ -55,6 +55,7 @@ public class ShapeFileReader {
             SimpleFeatureIterator features = Objects.requireNonNull(featureSource).getFeatures(filter).features();
             while (features.hasNext()) {
                 SimpleFeature feature = features.next();
+                log.info(feature.getAttribute(GEOM).toString());
                 if (feature.getAttribute(GEOM) instanceof Point point) {
                     double distance = inputPoint.distance(point);
                     if (distance < minDistance) {

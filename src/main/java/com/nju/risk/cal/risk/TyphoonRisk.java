@@ -11,4 +11,8 @@ public class TyphoonRisk implements DeviceBrokenRisk {
     public Map<String, Double> calculate(CompanyInfo companyInfo, StorageTank storageTank) {
         return Map.of("高风载荷情境下", 0.32, "极高风载荷情境下", 0.40);
     }
+
+    public Map<String, Double> adapt(Map<String, Double> input, double gao, double jigao) {
+        return Map.of("高风载荷情境下", input.get("高风载荷情境下") * gao, "极高风载荷情境下", input.get("极高风载荷情境下") * jigao);
+    }
 }

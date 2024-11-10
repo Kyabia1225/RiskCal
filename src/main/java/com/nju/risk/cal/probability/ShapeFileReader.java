@@ -4,9 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.geotools.api.data.FileDataStore;
 import org.geotools.api.data.FileDataStoreFinder;
 import org.geotools.api.data.SimpleFeatureSource;
-import org.geotools.api.feature.Feature;
 import org.geotools.api.feature.simple.SimpleFeature;
-import org.geotools.api.feature.simple.SimpleFeatureType;
 import org.geotools.api.filter.Filter;
 import org.geotools.api.filter.FilterFactory;
 import org.geotools.data.simple.SimpleFeatureIterator;
@@ -39,7 +37,7 @@ public class ShapeFileReader {
         return null;
     }
 
-    public static Feature getNearestPointFeature(double longitude, double latitude, SimpleFeatureSource featureSource) {
+    public static SimpleFeature getNearestPointFeature(double longitude, double latitude, SimpleFeatureSource featureSource) {
         GeometryFactory geometryFactory = new GeometryFactory();
         Coordinate coordinate = new Coordinate(longitude, latitude);
         Point inputPoint = geometryFactory.createPoint(coordinate);
@@ -67,6 +65,9 @@ public class ShapeFileReader {
             }
         } catch (Exception e) {
             log.error(e.getMessage());
+        }
+        if (nearestPoint == null) {
+            throw new RuntimeException("Nearest point not found");
         }
         return nearestPoint;
     }

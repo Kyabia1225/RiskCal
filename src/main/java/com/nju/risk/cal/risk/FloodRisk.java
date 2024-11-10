@@ -11,8 +11,10 @@ public class FloodRisk implements DeviceBrokenRisk {
 
     private final Double v4case1 = 2.0;
     private final Double v4case2 = 0.5;
+    private final Double v4case3 = 2.0;
     private final Double h4case1 = 2.0;
     private final Double h4case2 = 3.0;
+    private final Double h4case3 = 0.5;
 
     @Override
     public Map<String, Double> calculate(CompanyInfo companyInfo, StorageTank storageTank) {
@@ -36,7 +38,12 @@ public class FloodRisk implements DeviceBrokenRisk {
                 + ((-1.882) * Math.pow((9.8 * storageTank.getShellWeight() - 46.8), (-0.252)) - storageTank.getSubstanceDensity()) / (storageTank.getStoredSubstanceDensity() - storageTank.getSubstanceDensity()) - storageTank.getMinFillingLevel())
                 / (storageTank.getMaxFillingLevel() - storageTank.getMinFillingLevel());
 
-        return Map.of("情景1", res1, "情景2", res2);
+        // case 3
+        Double res3 = ((1331.0 * Math.pow(storageTank.getDiameter(), -0.99) / (storageTank.getStoredSubstanceDensity() - storageTank.getSubstanceDensity())) * (h4case3 - storageTank.getSupportHeight())
+                + ((-1.882) * Math.pow((9.8 * storageTank.getShellWeight() - 46.8), (-0.252)) - storageTank.getSubstanceDensity()) / (storageTank.getStoredSubstanceDensity() - storageTank.getSubstanceDensity()) - storageTank.getMinFillingLevel())
+                / (storageTank.getMaxFillingLevel() - storageTank.getMinFillingLevel());
+
+        return Map.of("情景1", res1, "情景2", res2, "情景3", res3);
     }
 
     private Map<String, Double> calculateVerticalTank(StorageTank storageTank) {
@@ -49,7 +56,12 @@ public class FloodRisk implements DeviceBrokenRisk {
                 (9.8 * storageTank.getStoredSubstanceDensity() * storageTank.getHeight()) - storageTank.getMinFillingLevel())
                 / (storageTank.getMaxFillingLevel() - storageTank.getMinFillingLevel());
 
-        return Map.of("情景1", res1, "情景2", res2);
+        // case 3
+        Double res3 = ((990.0 * v4case3 * v4case3 + 10780.0 * h4case3 - 0.199 * storageTank.getVolume() - 6950.0) /
+                (9.8 * storageTank.getStoredSubstanceDensity() * storageTank.getHeight()) - storageTank.getMinFillingLevel())
+                / (storageTank.getMaxFillingLevel() - storageTank.getMinFillingLevel());
+
+        return Map.of("情景1", res1, "情景2", res2, "情景3", res3);
 
     }
 }

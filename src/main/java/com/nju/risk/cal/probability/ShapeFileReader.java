@@ -13,6 +13,7 @@ import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.geom.Point;
 
+import java.io.File;
 import java.net.URL;
 import java.util.Objects;
 
@@ -21,10 +22,10 @@ public class ShapeFileReader {
     private static final String GEOM = "the_geom";
     private static final String DEGREE = "degree";
 
-    public static SimpleFeatureSource readShapeFile(String fileName) {
+    public static SimpleFeatureSource readShapeFile(String path) {
         FileDataStore dataStore = null;
         try {
-            URL shapeFileURL = ShapeFileReader.class.getClassLoader().getResource(fileName);
+            URL shapeFileURL = new File(path).toURI().toURL();
              dataStore = FileDataStoreFinder.getDataStore(shapeFileURL);
              return dataStore.getFeatureSource();
         } catch (Exception e) {

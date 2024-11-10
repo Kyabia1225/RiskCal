@@ -1,4 +1,4 @@
-package com.nju.risk.cal;
+package com.nju.risk.cal.risk;
 
 import com.nju.risk.model.CompanyInfo;
 import com.nju.risk.model.StorageTank;
@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Map;
 @Service
-public class HeavyRainRisk implements DeviceBrokenRisk {
+public class RainstormRisk implements DeviceBrokenRisk {
     private final Double H4case1 = 0.02;
     private final Double H4case2 = 0.05;
     @Override

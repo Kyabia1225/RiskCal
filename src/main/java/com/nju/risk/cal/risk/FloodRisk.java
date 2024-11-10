@@ -1,4 +1,4 @@
-package com.nju.risk.cal;
+package com.nju.risk.cal.risk;
 
 import com.nju.risk.model.CompanyInfo;
 import com.nju.risk.model.StorageTank;

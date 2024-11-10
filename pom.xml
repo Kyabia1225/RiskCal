@@ -103,6 +103,12 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>false</filtering> <!-- 禁用资源过滤 -->
+			</resource>
+		</resources>
 	</build>
 
 </project>

@@ -4,6 +4,7 @@ import com.nju.risk.model.CompanyInfo;
 import com.nju.risk.model.StorageTank;
 import org.springframework.stereotype.Service;
 
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 @Service
@@ -42,8 +43,11 @@ public class FloodRisk implements DeviceBrokenRisk {
         Double res3 = ((1331.0 * Math.pow(storageTank.getDiameter(), -0.99) / (storageTank.getStoredSubstanceDensity() - storageTank.getSubstanceDensity())) * (h4case3 - storageTank.getSupportHeight())
                 + ((-1.882) * Math.pow((9.8 * storageTank.getShellWeight() - 46.8), (-0.252)) - storageTank.getSubstanceDensity()) / (storageTank.getStoredSubstanceDensity() - storageTank.getSubstanceDensity()) - storageTank.getMinFillingLevel())
                 / (storageTank.getMaxFillingLevel() - storageTank.getMinFillingLevel());
-
-        return Map.of("情景1", res1, "情景2", res2, "情景3", res3);
+        Map<String, Double> res = new LinkedHashMap<>();
+        res.put("情景1", res1);
+        res.put("情景2", res2);
+        res.put("情景3", res3);
+        return res;
     }
 
     private Map<String, Double> calculateVerticalTank(StorageTank storageTank) {
@@ -61,7 +65,11 @@ public class FloodRisk implements DeviceBrokenRisk {
                 (9.8 * storageTank.getStoredSubstanceDensity() * storageTank.getHeight()) - storageTank.getMinFillingLevel())
                 / (storageTank.getMaxFillingLevel() - storageTank.getMinFillingLevel());
 
-        return Map.of("情景1", res1, "情景2", res2, "情景3", res3);
+        Map<String, Double> res = new LinkedHashMap<>();
+        res.put("情景1", res1);
+        res.put("情景2", res2);
+        res.put("情景3", res3);
+        return res;
 
     }
 }

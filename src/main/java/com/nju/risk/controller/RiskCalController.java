@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 @RestController
@@ -61,10 +62,12 @@ public class RiskCalController {
             double typhoonJiGao = (double) typhoon.getAttribute(TyphoonProbability.TP_JIGAO);
             Map<String, Double> typhoonResult = typhoonRisk.calculate(request.getCompanyInfo(), request.getStorageTank());
             UtilCollections.prepareTankDefaultData(request.getStorageTank(), request.getCompanyInfo());
-            return Map.of("地震风险", MapModifier.applyRateToMap(earthquakeRisk.calculate(request.getCompanyInfo(), request.getStorageTank()), earthquake),
-                    "洪水风险", MapModifier.applyRateToMap(floodRisk.calculate(request.getCompanyInfo(), request.getStorageTank()), flood),
-                    "暴雨风险", MapModifier.applyRateToMap(rainstormRisk.calculate(request.getCompanyInfo(), request.getStorageTank()), rainstorm),
-                    "台风风险", typhoonRisk.adapt(typhoonResult, typhoonGao, typhoonJiGao));
+            Map<String, Map<String, Double>> res = new LinkedHashMap<>();
+            res.put("洪水灾害", MapModifier.applyRateToMap(floodRisk.calculate(request.getCompanyInfo(), request.getStorageTank()), flood));
+            res.put("地震灾害", MapModifier.applyRateToMap(earthquakeRisk.calculate(request.getCompanyInfo(), request.getStorageTank()), earthquake));
+            res.put("台风灾害", typhoonRisk.adapt(typhoonResult, typhoonGao, typhoonJiGao));
+            res.put("暴雨灾害", MapModifier.applyRateToMap(rainstormRisk.calculate(request.getCompanyInfo(), request.getStorageTank()), rainstorm));
+            return res;
         }
     }
 }

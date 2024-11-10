@@ -5,13 +5,13 @@ import com.nju.risk.model.StorageTank;
 import org.apache.commons.math3.distribution.NormalDistribution;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 @Service
 public class EarthquakeRisk implements DeviceBrokenRisk {
-    private static final Map<String, Double> intensityToPGA = new HashMap<>();
-    private static final Map<String, double[]> riskStateToKValues = new HashMap<>();
+    private static final Map<String, Double> intensityToPGA = new LinkedHashMap<>();
+    private static final Map<String, double[]> riskStateToKValues = new LinkedHashMap<>();
 
     static {
         // 初始化烈度到PGA的映射
@@ -51,7 +51,7 @@ public class EarthquakeRisk implements DeviceBrokenRisk {
     public Map<String, Double> calculate(CompanyInfo companyInfo, StorageTank storageTank) {
         String[] intensities = new String[]{"I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII"};
         String[] riskStates = new String[]{"a", "b", "c", "d"};
-        HashMap<String, Double> res = new HashMap<>();
+        LinkedHashMap<String, Double> res = new LinkedHashMap<>();
         for (String intensity : intensities) {
             for (String riskState : riskStates) {
                 double[] kValues = calculateRisk(intensity, riskState);

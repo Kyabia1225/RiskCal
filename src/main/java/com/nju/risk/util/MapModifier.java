@@ -1,5 +1,6 @@
 package com.nju.risk.util;
 
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -8,7 +9,9 @@ public class MapModifier {
         return map.entrySet().stream()
                 .collect(Collectors.toMap(
                         Map.Entry::getKey,
-                        entry -> entry.getValue() * rate
+                        entry -> entry.getValue() * rate,
+                        (e1, e2) -> e1,
+                        LinkedHashMap::new
                 ));
     }
 }

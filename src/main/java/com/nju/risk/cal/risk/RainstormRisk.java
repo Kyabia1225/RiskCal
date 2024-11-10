@@ -4,6 +4,7 @@ import com.nju.risk.model.CompanyInfo;
 import com.nju.risk.model.StorageTank;
 import org.springframework.stereotype.Service;
 
+import java.util.LinkedHashMap;
 import java.util.Map;
 @Service
 public class RainstormRisk implements DeviceBrokenRisk {
@@ -21,7 +22,10 @@ public class RainstormRisk implements DeviceBrokenRisk {
                     * (storageTank.getFloatingRoofThickness() + H4case2) - 35.49168 * storageTank.getDrainagePipeDiameter() * storageTank.getDrainageSystemEfficiency())
                     / (7.693 * storageTank.getStoredSubstanceDensity() * Math.pow(storageTank.getDiameter(), 2) * storageTank.getHeight());
 
-            return Map.of("情景1", res1, "情景2", res2);
+            Map<String, Double> res = new LinkedHashMap<>();
+            res.put("情景1", res1);
+            res.put("情景2", res2);
+            return res;
         }
     }
 }

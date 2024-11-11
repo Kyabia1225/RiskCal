@@ -13,6 +13,33 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/RiskCalculationRequest'
+            example:
+              companyInfo:
+                latitude: 32.25
+                longitude: 118.7833
+                name: "德纳（南京）化工有限公司"
+              storageTank:
+                number: 1
+                area: 100
+                name: "Tank 1"
+                tankLongitude: 118.7833
+                tankLatitude: 32.25
+                shape: "卧式圆筒罐"
+                form: "固定顶罐"
+                installationType: 1
+                supportHeight: 0.0
+                material: "steel"
+                shellWeight: 7600
+                diameter: 32
+                height: 12.44
+                volume: 100
+                workingAsConstantPressure: true
+                storedSubstanceName: "液氨"
+                storedSubstanceDensity: 617
+                substanceState: 3
+                substanceDensity: 0.771
+                maxFillingLevel: 0.8
+                minFillingLevel: 0.01
       responses:
         '200':
           description: A map containing the calculated risks for different disaster types.
@@ -24,6 +51,65 @@ paths:
                   type: object
                   additionalProperties:
                     type: number
+              example:
+                洪水灾害:
+                  情景1: 0.011167
+                  情景2: 0.017248
+                  情景3: 0.002045
+                地震灾害:
+                  "烈度：I，风险状态：a": 0.0
+                  "烈度：I，风险状态：b": 0.0
+                  "烈度：I，风险状态：c": 0.0
+                  "烈度：I，风险状态：d": 0.0
+                  "烈度：II，风险状态：a": 0.0
+                  "烈度：II，风险状态：b": 0.0
+                  "烈度：II，风险状态：c": 0.0
+                  "烈度：II，风险状态：d": 0.0
+                  "烈度：III，风险状态：a": 0.0
+                  "烈度：III，风险状态：b": 0.0
+                  "烈度：III，风险状态：c": 0.0
+                  "烈度：III，风险状态：d": 0.0
+                  "烈度：IV，风险状态：a": 0.0
+                  "烈度：IV，风险状态：b": 0.0
+                  "烈度：IV，风险状态：c": 0.0
+                  "烈度：IV，风险状态：d": 0.0
+                  "烈度：V，风险状态：a": 0.0
+                  "烈度：V，风险状态：b": 0.0
+                  "烈度：V，风险状态：c": 0.0
+                  "烈度：V，风险状态：d": 0.0
+                  "烈度：VI，风险状态：a": 0.0
+                  "烈度：VI，风险状态：b": 0.0
+                  "烈度：VI，风险状态：c": 0.0
+                  "烈度：VI，风险状态：d": 0.0
+                  "烈度：VII，风险状态：a": 0.0
+                  "烈度：VII，风险状态：b": 0.0
+                  "烈度：VII，风险状态：c": 0.0
+                  "烈度：VII，风险状态：d": 0.0
+                  "烈度：VIII，风险状态：a": 0.0
+                  "烈度：VIII，风险状态：b": 0.0
+                  "烈度：VIII，风险状态：c": 0.0
+                  "烈度：VIII，风险状态：d": 0.0
+                  "烈度：IX，风险状态：a": 0.0
+                  "烈度：IX，风险状态：b": 0.0
+                  "烈度：IX，风险状态：c": 0.0
+                  "烈度：IX，风险状态：d": 0.0
+                  "烈度：X，风险状态：a": 0.0
+                  "烈度：X，风险状态：b": 0.0
+                  "烈度：X，风险状态：c": 0.0
+                  "烈度：X，风险状态：d": 0.0
+                  "烈度：XI，风险状态：a": 0.0
+                  "烈度：XI，风险状态：b": 0.0
+                  "烈度：XI，风险状态：c": 0.0
+                  "烈度：XI，风险状态：d": 0.0
+                  "烈度：XII，风险状态：a": 0.0
+                  "烈度：XII，风险状态：b": 0.0
+                  "烈度：XII，风险状态：c": 0.0
+                  "烈度：XII，风险状态：d": 0.0
+                台风灾害:
+                  高风载荷情境下: 0.03
+                  极高风载荷情境下: 0.225
+                暴雨灾害:
+                  非浮顶罐无需计算: 0.0
         '400':
           description: Bad Request
         '500':

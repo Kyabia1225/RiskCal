@@ -1,0 +1,193 @@
+openapi: 3.0.0
+info:
+  title: Risk Calculation API
+  version: 1.0.0
+  description: API for calculating risks based on company information and storage tank details.
+paths:
+  /risk/calculate:
+    post:
+      summary: Calculates the risk based on the provided request.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RiskCalculationRequest'
+      responses:
+        '200':
+          description: A map containing the calculated risks for different disaster types.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: object
+                  additionalProperties:
+                    type: number
+        '400':
+          description: Bad Request
+        '500':
+          description: Internal Server Error
+components:
+  schemas:
+    RiskCalculationRequest:
+      type: object
+      properties:
+        companyInfo:
+          $ref: '#/components/schemas/CompanyInfo'
+        storageTank:
+          $ref: '#/components/schemas/StorageTank'
+      required:
+        - companyInfo
+        - storageTank
+    CompanyInfo:
+      type: object
+      properties:
+        address:
+          type: string
+          description: 通讯地址
+        longitude:
+          type: number
+          format: double
+          description: 位置信息 - 经度
+        latitude:
+          type: number
+          format: double
+          description: 位置信息 - 纬度
+        area:
+          type: integer
+          description: 占地面积
+        industryType:
+          type: string
+          description: 行业类型
+        qValue:
+          type: number
+          format: double
+          description: 企业Q值（环境风险物质数量与其临界量比）
+      required:
+        - longitude
+        - latitude
+    StorageTank:
+      type: object
+      properties:
+        number:
+          type: integer
+          description: 储罐个数
+        area:
+          type: integer
+          description: 储罐区面积
+        name:
+          type: string
+          description: 储罐名称
+        tankLongitude:
+          type: number
+          format: double
+          description: 储罐位置 - 经度
+        tankLatitude:
+          type: number
+          format: double
+          description: 储罐位置 - 纬度
+        shape:
+          type: string
+          description: 储罐形状
+        form:
+          type: string
+          description: 储罐形式
+        floatingRoofDensity:
+          type: number
+          format: double
+          description: 浮顶密度
+        floatingRoofThickness:
+          type: number
+          format: double
+          description: 浮顶厚度
+        floatingRoofWeight:
+          type: number
+          format: double
+          description: 浮顶重量
+        drainagePipeDiameter:
+          type: number
+          format: double
+          description: 排水管道直径
+        drainageSystemEfficiency:
+          type: number
+          format: double
+          description: 排水系统效率
+        installationType:
+          type: integer
+          description: 安装形式
+        supportHeight:
+          type: number
+          format: double
+          description: 支架高度, 0表示无支架
+        material:
+          type: string
+          description: 储罐材质
+        shellWeight:
+          type: number
+          format: double
+          description: 储罐壳体重量
+        diameter:
+          type: number
+          format: double
+          description: 直径
+        height:
+          type: number
+          format: double
+          description: 高度
+        volume:
+          type: number
+          format: double
+          description: 容积
+        workingAsConstantPressure:
+          type: boolean
+          description: 工作压力, true表示为常压
+        storedSubstanceName:
+          type: string
+          description: 储存物质名称
+        storedSubstanceDensity:
+          type: number
+          format: double
+          description: 储存物质密度
+        substanceState:
+          type: integer
+          description: 物质状态, 1，2 or 3
+        substanceDensity:
+          type: number
+          format: double
+          description: 气体密度
+        maxFillingLevel:
+          type: number
+          format: double
+          description: 日常最大填充水平
+        minFillingLevel:
+          type: number
+          format: double
+          description: 日常最小填充水平
+      required:
+        - number
+        - area
+        - name
+        - tankLongitude
+        - tankLatitude
+        - shape
+        - form
+        - floatingRoofDensity
+        - floatingRoofThickness
+        - floatingRoofWeight
+        - drainagePipeDiameter
+        - drainageSystemEfficiency
+        - installationType
+        - supportHeight
+        - material
+        - shellWeight
+        - diameter
+        - height
+        - volume
+        - workingAsConstantPressure
+        - storedSubstanceName
+        - storedSubstanceDensity
+        - substanceState
+        - substanceDensity
+        - maxFillingLevel
+        - minFillingLevel

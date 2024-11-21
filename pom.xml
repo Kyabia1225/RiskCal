@@ -53,22 +53,22 @@
 		<dependency>
 			<groupId>org.geotools</groupId>
 			<artifactId>gt-shapefile</artifactId>
-			<version>32.0</version> <!-- 使用你需要的版本 -->
+			<version>32.1</version> <!-- 使用你需要的版本 -->
 		</dependency>
 		<dependency>
 			<groupId>org.geotools</groupId>
 			<artifactId>gt-api</artifactId>
-			<version>32.0</version>
+			<version>32.1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.geotools</groupId>
 			<artifactId>gt-main</artifactId>
-			<version>32.0</version>
+			<version>32.1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.geotools</groupId>
 			<artifactId>gt-epsg-hsql</artifactId>
-			<version>32.0</version>
+			<version>32.1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.locationtech.jts</groupId>

@@ -29,10 +29,10 @@ public class EarthquakeRisk implements DeviceBrokenRisk {
         intensityToPGA.put("XII", 3.55);
 
         // 初始化风险状态到k值的映射
-        riskStateToKValues.put("a", new double[]{0.43, 1.26});
-        riskStateToKValues.put("b", new double[]{-2.83, 1.64});
-        riskStateToKValues.put("c", new double[]{1.77, 1.14});
-        riskStateToKValues.put("d", new double[]{-0.92, 1.25});
+        riskStateToKValues.put("a", new double[]{7.01, 1.67});
+        riskStateToKValues.put("b", new double[]{4.66, 1.54});
+        riskStateToKValues.put("c", new double[]{5.43, 1.25});
+        riskStateToKValues.put("d", new double[]{3.36, 1.25});
     }
 
     public double[] calculateRisk(String intensity, String riskState) {
